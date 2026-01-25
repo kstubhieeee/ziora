@@ -42,7 +42,7 @@ const Footer = () => {
         { name: "Contact Us", href: "#" },
         { name: "Student Forum", href: "#" },
         { name: "Technical Support", href: "#" },
-        { name: "Feedback", href: "#" },
+        { name: "Feedback", href: "/feedback" },
       ]
     }
   ];

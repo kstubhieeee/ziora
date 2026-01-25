@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, User, Menu, X, Shield, BarChart3, Users, MessageSquare, Database, Home, LogOut } from 'lucide-react';
+import { Moon, Sun, User, Menu, X, Shield, BarChart3, Users, MessageSquare, Database, Home, LogOut, Star } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
@@ -80,6 +80,12 @@ const AdminNavbar = () => {
       href: '/admin/dashboard/comments', 
       icon: MessageSquare,
       isActive: pathname.startsWith('/admin/dashboard/comments')
+    },
+    { 
+      name: 'Reviews', 
+      href: '/admin/dashboard/reviews', 
+      icon: Star,
+      isActive: pathname.startsWith('/admin/dashboard/reviews')
     },
     { 
       name: 'Security', 

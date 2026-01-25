@@ -162,6 +162,25 @@ export async function GET() {
       return eventDate >= today;
     }).length;
 
+    // Get reviews/feedback statistics
+    const feedbackCollection = db.collection("feedback");
+    const allFeedback = await feedbackCollection.find({}).toArray();
+
+    const totalReviews = allFeedback.length;
+    const pendingReviews = allFeedback.filter(review => review.status === 'pending').length;
+    
+    // Calculate average rating
+    let averageRating = 0;
+    if (allFeedback.length > 0) {
+      const totalRating = allFeedback.reduce((sum, review) => sum + (review.rating || 0), 0);
+      averageRating = totalRating / allFeedback.length;
+    }
+    
+    // Calculate reviews this week
+    const reviewsThisWeek = allFeedback.filter(review => 
+      review.createdAt && new Date(review.createdAt) > oneWeekAgo
+    ).length;
+
     return NextResponse.json({
       success: true,
       statistics: {
@@ -176,6 +195,12 @@ export async function GET() {
           pending: pendingComments,
           flagged: flaggedComments,
           today: commentsToday
+        },
+        reviews: {
+          total: totalReviews,
+          pending: pendingReviews,
+          averageRating: averageRating,
+          thisWeek: reviewsThisWeek
         },
         security: {
           totalEvents: totalSecurityEvents,

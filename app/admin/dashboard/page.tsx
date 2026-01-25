@@ -18,7 +18,8 @@ import {
   Shield,
   Eye,
   MousePointer,
-  Code
+  Code,
+  Star
 } from "lucide-react";
 
 interface DashboardStats {
@@ -33,6 +34,12 @@ interface DashboardStats {
     pending: number;
     flagged: number;
     today: number;
+  };
+  reviews: {
+    total: number;
+    pending: number;
+    averageRating: number;
+    thisWeek: number;
   };
   security: {
     totalEvents: number;
@@ -172,6 +179,36 @@ export default function AdminDashboard() {
           label: "Suspended", 
           value: loading ? "..." : (stats?.users.suspended || 0).toLocaleString(),
           icon: UserX
+        }
+      ]
+    },
+    {
+      title: "Reviews & Ratings",
+      description: "Monitor user feedback, ratings, and suggestions for platform improvement",
+      icon: Star,
+      iconColor: "text-blue-600 dark:text-blue-400",
+      iconBg: "bg-blue-100 dark:bg-blue-900",
+      route: "/admin/dashboard/reviews",
+      stats: [
+        { 
+          label: "Total Reviews", 
+          value: loading ? "..." : (stats?.reviews.total || 0).toLocaleString(),
+          icon: Star
+        },
+        { 
+          label: "Pending Review", 
+          value: loading ? "..." : (stats?.reviews.pending || 0).toLocaleString(),
+          icon: Clock
+        },
+        { 
+          label: "This Week", 
+          value: loading ? "..." : (stats?.reviews.thisWeek || 0).toLocaleString(),
+          icon: TrendingUp
+        },
+        { 
+          label: "Avg Rating", 
+          value: loading ? "..." : (stats?.reviews.averageRating || 0).toFixed(1),
+          icon: Star
         }
       ]
     },
@@ -323,7 +360,7 @@ export default function AdminDashboard() {
       {/* Quick Actions */}
       <div className="mt-12">
         <h2 className="text-xl font-semibold text-foreground mb-6">Quick Actions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Button 
             variant="outline" 
             className="p-4 h-auto flex-col space-y-2"
@@ -339,6 +376,14 @@ export default function AdminDashboard() {
           >
             <MessageSquare className="h-5 w-5" />
             <span className="text-sm">Review Comments</span>
+          </Button>
+          <Button 
+            variant="outline" 
+            className="p-4 h-auto flex-col space-y-2"
+            onClick={() => router.push('/admin/dashboard/reviews')}
+          >
+            <Star className="h-5 w-5" />
+            <span className="text-sm">View Reviews</span>
           </Button>
           <Button 
             variant="outline" 
