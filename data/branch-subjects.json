@@ -269,11 +269,11 @@
         ],
         "8": [
           {
-            "id": "hmi",
-            "name": "Human Machine Interaction",
-            "code": "HMI",
+            "id": "PM",
+            "name": "Project Management",
+            "code": "PM",
             "credits": 4,
-            "description": "UI/UX design, usability testing, and interaction design"
+            "description": "Project management principles, planning, and execution"
           },
           {
             "id": "distributed-computing",
@@ -283,18 +283,18 @@
             "description": "Distributed systems, cloud computing, and parallel processing"
           },
           {
-            "id": "advanced-algorithm",
-            "name": "Advanced Algorithm",
-            "code": "AA",
+            "id": "SMA",
+            "name": "Social Media Analytics",
+            "code": "SMA",
             "credits": 4,
-            "description": "Advanced algorithmic techniques and optimization"
+            "description": "Social Media Analytics is analyzing social media and business behind it"
           },
           {
             "id": "advanced-database",
-            "name": "Advanced Database System",
-            "code": "ADB",
+            "name": "Deep Learning",
+            "code": "DL",
             "credits": 4,
-            "description": "NoSQL databases, distributed databases, and data analytics"
+            "description": "Deep Learning is a subset of machine learning in artificial intelligence (AI) that has networks capable of learning from data that is unstructured or unlabeled."
           }
         ]
       }
